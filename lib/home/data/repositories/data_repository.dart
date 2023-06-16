@@ -22,4 +22,14 @@ class DataRepository extends Repository {
     }
     return null;
   }
+
+  @override
+  Future<ProductUseCase?> searchProduct(String prompt) async {
+    final data = await RemoteData().searchProduct(prompt);
+    if(data != null) {
+      final usecase = ProductUseCase(data);
+      return usecase;
+    }
+    return null;
+  }
 }
