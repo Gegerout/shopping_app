@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shopping_app/home/presentation/pages/search_page.dart';
 import 'package:shopping_app/home/presentation/states/home_state.dart';
 
+import 'buy_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -193,40 +195,45 @@ class HomeWidget extends ConsumerWidget {
                           scrollDirection: Axis.horizontal,
                           itemCount: 2,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Center(
-                                child: Material(
-                                  elevation: 5,
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: SizedBox(
-                                    width: 167,
-                                    height: 167,
-                                    child: Column(
-                                      children: [
-                                        Image.network(
-                                          value[index].images[1],
-                                          width: 120,
-                                          height: 120,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          value[index].title,
-                                          style: GoogleFonts.montserrat(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 15),
-                                        ),
-                                        Text(
-                                          "\$${value[index].price} US",
-                                          style: GoogleFonts.roboto(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 12),
-                                        )
-                                      ],
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => BuyPage(title: value[index].title, price: value[index].price, image: value[index].images[0],)));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Center(
+                                  child: Material(
+                                    elevation: 5,
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: SizedBox(
+                                      width: 167,
+                                      height: 167,
+                                      child: Column(
+                                        children: [
+                                          Image.network(
+                                            value[index].images[1],
+                                            width: 120,
+                                            height: 120,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            value[index].title,
+                                            style: GoogleFonts.montserrat(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 15),
+                                          ),
+                                          Text(
+                                            "\$${value[index].price} US",
+                                            style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 12),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
