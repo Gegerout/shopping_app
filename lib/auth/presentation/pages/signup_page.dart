@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/auth/presentation/pages/onboarding_page.dart';
 import 'package:shopping_app/auth/presentation/pages/signin_page.dart';
 
 import '../../../home/presentation/pages/home_page.dart';
@@ -15,6 +16,8 @@ class SignupPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -22,14 +25,14 @@ class SignupPage extends ConsumerWidget {
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: Column(
               children: [
-                const SizedBox(height: 114,),
+                SizedBox(height: height * 0.1,),
                 Center(
                     child: Text(
                       "Create account",
                       style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.w700, fontSize: 25),
                     )),
-                const SizedBox(height: 90,),
+                SizedBox(height: height * 0.08,),
                 Container(
                   width: double.infinity,
                   height: 66,
@@ -55,7 +58,7 @@ class SignupPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36,),
+                SizedBox(height: height * 0.03,),
                 Container(
                   width: double.infinity,
                   height: 66,
@@ -64,6 +67,7 @@ class SignupPage extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(30)),
                   child: Center(
                     child: TextFormField(
+                      obscureText: true,
                       controller: passwordCont,
                       onChanged: (value) {
                         ref.read(signinProvider.notifier).checkCredsSignup(nameCont.text, value, confirmCont.text);
@@ -81,7 +85,7 @@ class SignupPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36,),
+                SizedBox(height: height * 0.03,),
                 Container(
                   width: double.infinity,
                   height: 66,
@@ -90,6 +94,7 @@ class SignupPage extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(30)),
                   child: Center(
                     child: TextFormField(
+                      obscureText: true,
                       controller: confirmCont,
                       onChanged: (value) {
                         ref.read(signinProvider.notifier).checkCredsSignup(nameCont.text, passwordCont.text, value);
@@ -107,7 +112,7 @@ class SignupPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 45,),
+                SizedBox(height: height * 0.1 - 36,),
                 SizedBox(
                   width: double.infinity,
                   height: 66,
@@ -115,7 +120,7 @@ class SignupPage extends ConsumerWidget {
                       onPressed: ref.watch(signinProvider).isValid ? () {
                         ref.read(signinProvider.notifier).loginUser(nameCont.text, passwordCont.text).then((value) {
                           if(value != null) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => OnboardingPage()));
                           }
                           else {
                             showDialog(context: context, builder: (context) => AlertDialog(
@@ -140,7 +145,7 @@ class SignupPage extends ConsumerWidget {
                             fontWeight: FontWeight.w700, fontSize: 25),
                       )),
                 ),
-                const SizedBox(height: 95,),
+                SizedBox(height: height * 0.12,),
                 TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => SigninPage()));
