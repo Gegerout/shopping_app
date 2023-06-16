@@ -102,7 +102,7 @@ class SigninPage extends ConsumerWidget {
                         onPressed: ref.watch(signinProvider).isValid ? () {
                           ref.read(signinProvider.notifier).loginUser(nameCont.text, passwordCont.text).then((value) {
                             if(value != null) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => OnboardingPage()));
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => OnboardingPage()), (route) => false);
                             }
                             else {
                               showDialog(context: context, builder: (context) => AlertDialog(

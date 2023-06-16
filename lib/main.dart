@@ -20,14 +20,14 @@ class MyApp extends ConsumerWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
         //useMaterial3: true,
       ),
       home: Scaffold(
         body: ref.watch(mainProvider).when(
             data: (value) {
               if(value != null) {
-                return OnboardingPage();
+                return HomePage();
               }
               return SigninPage();
             },

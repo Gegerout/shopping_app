@@ -44,7 +44,7 @@ class OnboardingPage extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(10),
               child: TextButton(onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
               }, child: Text("Next", style: GoogleFonts.montserrat(fontWeight: FontWeight.w500, fontSize: 20, color: const Color(0xFFF1C40F)),)),
             )
           ],
