@@ -36,7 +36,11 @@ class _DoPageState extends ConsumerState<DoPage> {
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Image.asset("assets/images/apple_image.png", width: 38, height: 38,),
+          child: Image.asset(
+            "assets/images/apple_image.png",
+            width: 38,
+            height: 38,
+          ),
         ),
         title: Text(
           "BestFruitShop",
@@ -48,7 +52,11 @@ class _DoPageState extends ConsumerState<DoPage> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: Image.asset("assets/images/profile_image.png", width: 30, height: 30,),
+            child: Image.asset(
+              "assets/images/profile_image.png",
+              width: 30,
+              height: 30,
+            ),
           )
         ],
       ),
@@ -71,9 +79,9 @@ class _DoPageState extends ConsumerState<DoPage> {
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.only(left: 62),
                           suffixIcon: Padding(
-                            padding: const EdgeInsets.only(right: 19),
-                            child: Image.asset("assets/images/search_mini.png")
-                          ),
+                              padding: const EdgeInsets.only(right: 19),
+                              child:
+                                  Image.asset("assets/images/search_mini.png")),
                           border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -102,66 +110,79 @@ class _DoPageState extends ConsumerState<DoPage> {
                 const Icon(Icons.keyboard_arrow_down)
               ],
             ),
-            ref.watch(searchProvider(widget.prompt)).when(data: (value) {
-              return SizedBox(
-                width: 400,
-                height: 800,
-                child: GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 22,
-                    crossAxisCount: 2,
-                    children: List.generate(value.length, (index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => BuyPage(title: value[index].title, price: value[index].price, image: value[index].images[0],)));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: Center(
-                            child: Material(
-                              elevation: 5,
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              child: SizedBox(
-                                width: 167,
-                                height: 167,
-                                child: Column(
-                                  children: [
-                                    Image.network(
-                                      value[index].images[1],
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.cover,
+            ref.watch(searchProvider(widget.prompt)).when(
+                data: (value) {
+                  return SizedBox(
+                    width: 400,
+                    height: 800,
+                    child: GridView.count(
+                        physics: const NeverScrollableScrollPhysics(),
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 22,
+                        crossAxisCount: 2,
+                        children: List.generate(value.length, (index) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BuyPage(
+                                            title: value[index].title,
+                                            price: value[index].price,
+                                            image: value[index].images[0],
+                                          )));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: Center(
+                                child: Material(
+                                  elevation: 5,
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: SizedBox(
+                                    width: 167,
+                                    height: 167,
+                                    child: Column(
+                                      children: [
+                                        Image.network(
+                                          value[index].images[1],
+                                          width: 120,
+                                          height: 120,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          value[index].title,
+                                          style: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 15),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text(
+                                          "\$${value[index].price} US",
+                                          style: GoogleFonts.roboto(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 12),
+                                        )
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      value[index].title,
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      "\$${value[index].price} US",
-                                      style: GoogleFonts.roboto(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 12),
-                                    )
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    })),
-              );
-            }, error: (error, stacktrace) => Center(child: Text(error.toString()),), loading: () => Center(child: CircularProgressIndicator(),))
-          ]
-          ),
+                          );
+                        })),
+                  );
+                },
+                error: (error, stacktrace) => Center(
+                      child: Text(error.toString()),
+                    ),
+                loading: () => Center(
+                      child: CircularProgressIndicator(),
+                    ))
+          ]),
         ),
       ),
       bottomNavigationBar: SizedBox(
@@ -176,7 +197,12 @@ class _DoPageState extends ConsumerState<DoPage> {
                   setState(() {
                     currentPage = 0;
                   });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 0,)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage(
+                                page: 0,
+                              )));
                 },
                 child: Image.asset(currentPage == 0
                     ? "assets/images/home_active.png"
@@ -187,7 +213,12 @@ class _DoPageState extends ConsumerState<DoPage> {
                   setState(() {
                     currentPage = 1;
                   });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 1,)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage(
+                                page: 1,
+                              )));
                 },
                 child: Image.asset(currentPage == 1
                     ? "assets/images/bell_active.png"
@@ -198,7 +229,12 @@ class _DoPageState extends ConsumerState<DoPage> {
                   setState(() {
                     currentPage = 2;
                   });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 2,)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage(
+                                page: 2,
+                              )));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 60),
@@ -212,7 +248,12 @@ class _DoPageState extends ConsumerState<DoPage> {
                   setState(() {
                     currentPage = 3;
                   });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 3,)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage(
+                                page: 3,
+                              )));
                 },
                 child: Image.asset(currentPage == 3
                     ? "assets/images/settings_active.png"
@@ -233,7 +274,10 @@ class _DoPageState extends ConsumerState<DoPage> {
               elevation: 0,
               backgroundColor: const Color(0xFFF1C40F),
               onPressed: () {},
-              child: const Icon(Icons.add, size: 40,),
+              child: const Icon(
+                Icons.add,
+                size: 40,
+              ),
             ),
           ),
         ),

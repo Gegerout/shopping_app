@@ -356,7 +356,9 @@ class OrdersPage extends StatelessWidget {
         padding: const EdgeInsets.only(left: 30, right: 30),
         child: Column(
           children: [
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               width: double.infinity,
               height: 140,
@@ -400,7 +402,9 @@ class OrdersPage extends StatelessWidget {
                           color: Colors.black.withOpacity(0.5)),
                     ),
                   ),
-                  const SizedBox(height: 8,),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(right: 35),
                     child: Text(
@@ -414,7 +418,9 @@ class OrdersPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 18,),
+            const SizedBox(
+              height: 18,
+            ),
             Container(
               width: double.infinity,
               height: 66,

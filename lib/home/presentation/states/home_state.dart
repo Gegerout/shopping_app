@@ -4,33 +4,31 @@ import 'package:shopping_app/home/data/repositories/data_repository.dart';
 
 final phonesProvider = FutureProvider((ref) async {
   final data = await DataRepository().getPhones();
-  if(data != null) {
+  if (data != null) {
     final model = data.data;
     return model;
-  }
-  else {
+  } else {
     throw Error();
   }
 });
 
 final laptopsProvider = FutureProvider((ref) async {
   final data = await DataRepository().getLaptops();
-  if(data != null) {
+  if (data != null) {
     final model = data.data;
     return model;
-  }
-  else {
+  } else {
     throw Error();
   }
 });
 
-final searchProvider = FutureProvider.family<List<ProductModel>, String>((ref, prompt) async {
+final searchProvider =
+    FutureProvider.family<List<ProductModel>, String>((ref, prompt) async {
   final data = await DataRepository().searchProduct(prompt);
-  if(data != null) {
+  if (data != null) {
     final model = data.data;
     return model;
-  }
-  else {
+  } else {
     throw Error();
   }
 });

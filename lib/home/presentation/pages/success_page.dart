@@ -21,13 +21,14 @@ class _SuccessPageState extends ConsumerState<SuccessPage> {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (_start == 0) {
           setState(() {
             timer.cancel();
           });
           ref.read(buyProvider.notifier).clearCart();
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 0)));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => HomePage(page: 0)));
         } else {
           setState(() {
             _start--;
@@ -48,7 +49,6 @@ class _SuccessPageState extends ConsumerState<SuccessPage> {
     _timer.cancel();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
