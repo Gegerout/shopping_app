@@ -7,7 +7,9 @@ import 'package:shopping_app/home/presentation/states/home_state.dart';
 import 'buy_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.page}) : super(key: key);
+
+  final int page;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,6 +17,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    currentPage = widget.page;
+  }
 
   @override
   Widget build(BuildContext context) {

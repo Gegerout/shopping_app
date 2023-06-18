@@ -171,6 +171,7 @@ class _BuyPageState extends ConsumerState<BuyPage> {
                   setState(() {
                     currentPage = 0;
                   });
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 0,)));
                 },
                 child: Image.asset(currentPage == 0
                     ? "assets/images/home_active.png"
@@ -181,6 +182,7 @@ class _BuyPageState extends ConsumerState<BuyPage> {
                   setState(() {
                     currentPage = 1;
                   });
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 1,)));
                 },
                 child: Image.asset(currentPage == 1
                     ? "assets/images/bell_active.png"
@@ -191,6 +193,7 @@ class _BuyPageState extends ConsumerState<BuyPage> {
                   setState(() {
                     currentPage = 2;
                   });
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 2,)));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 60),
@@ -204,6 +207,7 @@ class _BuyPageState extends ConsumerState<BuyPage> {
                   setState(() {
                     currentPage = 3;
                   });
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 3,)));
                 },
                 child: Image.asset(currentPage == 3
                     ? "assets/images/settings_active.png"
