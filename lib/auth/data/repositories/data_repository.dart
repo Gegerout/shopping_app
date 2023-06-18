@@ -23,4 +23,9 @@ class DataRepository extends Repository {
     }
     return null;
   }
+
+  @override
+  Future<void> deleteUser() async {
+    await LocalData().deleteUser();
+  }
 }

@@ -16,4 +16,10 @@ class LocalData {
     }
     return null;
   }
+
+  Future<void> deleteUser() async {
+    var dir = await getTemporaryDirectory();
+    final File file = File("${dir.path}/userData.json");
+    file.deleteSync();
+  }
 }

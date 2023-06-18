@@ -37,4 +37,8 @@ class SigninNotifier extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void deleteUser() async {
+    await DataRepository().deleteUser();
+  }
 }

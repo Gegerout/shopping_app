@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/auth/presentation/states/signin_state.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends ConsumerWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -95,7 +97,9 @@ class SettingsPage extends StatelessWidget {
                 width: double.infinity,
                 height: 66,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(signinProvider.notifier).deleteUser();
+                    },
                     style: ElevatedButton.styleFrom(
                         alignment: Alignment.centerLeft,
                         backgroundColor: const Color(0xFFE74C3C).withOpacity(0.6),
