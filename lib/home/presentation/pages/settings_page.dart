@@ -40,6 +40,7 @@ class SettingsPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 30, right: 30),
           child: Column(
             children: [
+              const SizedBox(height: 30,),
               SizedBox(
                 width: double.infinity,
                 height: 66,
@@ -64,6 +65,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                     )),
               ),
+              const SizedBox(height: 12,),
               SizedBox(
                 width: double.infinity,
                 height: 66,
@@ -88,6 +90,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                     )),
               ),
+              const SizedBox(height: 12,),
               SizedBox(
                 width: double.infinity,
                 height: 66,
