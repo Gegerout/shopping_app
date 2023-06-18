@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopping_app/home/presentation/pages/settings_page.dart';
-import 'package:shopping_app/home/presentation/states/buy_provider.dart';
 
+import '../states/buy_state.dart';
 import 'cart_page.dart';
 import 'home_page.dart';
 import 'notif_page.dart';
