@@ -213,8 +213,8 @@ class HomeWidget extends ConsumerWidget {
                                         children: [
                                           Image.network(
                                             value[index].images[1],
-                                            width: 120,
-                                            height: 120,
+                                            width: 115,
+                                            height: 115,
                                             fit: BoxFit.cover,
                                           ),
                                           const SizedBox(
@@ -224,14 +224,16 @@ class HomeWidget extends ConsumerWidget {
                                             value[index].title,
                                             style: GoogleFonts.montserrat(
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 15),
+                                                fontSize: 15, color: Colors.black),
                                           ),
+                                          const SizedBox(height: 5,),
                                           Text(
                                             "\$${value[index].price} US",
                                             style: GoogleFonts.roboto(
                                                 fontWeight: FontWeight.w300,
-                                                fontSize: 12),
-                                          )
+                                                fontSize: 12, color: Colors.black),
+                                          ),
+                                          const SizedBox(height: 5,)
                                         ],
                                       ),
                                     ),
@@ -270,41 +272,48 @@ class HomeWidget extends ConsumerWidget {
                             mainAxisSpacing: 22,
                             crossAxisCount: 2,
                             children: List.generate(value.length, (index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Center(
-                                  child: Material(
-                                    elevation: 5,
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: SizedBox(
-                                      width: 167,
-                                      height: 167,
-                                      child: Column(
-                                        children: [
-                                          Image.network(
-                                            value[index].images[1],
-                                            width: 120,
-                                            height: 120,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            value[index].title,
-                                            style: GoogleFonts.montserrat(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 15),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Text(
-                                            "\$${value[index].price} US",
-                                            style: GoogleFonts.roboto(
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: 12),
-                                          )
-                                        ],
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => BuyPage(title: value[index].title, price: value[index].price, image: value[index].images[0],)));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: Center(
+                                    child: Material(
+                                      elevation: 5,
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: SizedBox(
+                                        width: 167,
+                                        height: 167,
+                                        child: Column(
+                                          children: [
+                                            Image.network(
+                                              value[index].images[1],
+                                              width: 113,
+                                              height: 113,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              value[index].title,
+                                              style: GoogleFonts.montserrat(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 15, color: Colors.black),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            const SizedBox(height: 5,),
+                                            Text(
+                                              "\$${value[index].price} US",
+                                              style: GoogleFonts.roboto(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 12, color: Colors.black),
+                                            ),
+                                            const SizedBox(height: 5,),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
