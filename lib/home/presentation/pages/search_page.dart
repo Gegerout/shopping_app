@@ -15,7 +15,7 @@ class SearchPage extends StatelessWidget {
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Image.asset("assets/images/apple_image.png"),
+          child: Image.asset("assets/images/apple_image.png", width: 38, height: 38,),
         ),
         title: Text(
           "BestFruitShop",
@@ -27,7 +27,7 @@ class SearchPage extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: Image.asset("assets/images/profile_image.png"),
+            child: Image.asset("assets/images/profile_image.png", width: 30, height: 30,),
           )
         ],
       ),
