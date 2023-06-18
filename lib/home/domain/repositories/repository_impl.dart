@@ -9,4 +9,5 @@ abstract class Repository {
   Future<ProductUseCase?> searchProduct(String prompt);
   Future<void> addToCart(CartModel model);
   Future<CartUseCase?> loadCart();
+  Future<void> clearCart();
 }

@@ -22,4 +22,8 @@ class BuyNotifier extends ChangeNotifier {
     final model = CartModel(title, price, image, count);
     await DataRepository().addToCart(model);
   }
+
+  void clearCart() async {
+    await DataRepository().clearCart();
+  }
 }

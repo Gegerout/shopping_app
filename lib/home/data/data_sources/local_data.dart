@@ -22,4 +22,10 @@ class LocalData {
     }
     return null;
   }
+
+  Future<void> clearCart() async {
+    var dir = await getTemporaryDirectory();
+    final File file = File("${dir.path}/cartData.json");
+    file.deleteSync();
+  }
 }

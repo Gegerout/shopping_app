@@ -50,4 +50,9 @@ class DataRepository extends Repository {
     }
     return null;
   }
+
+  @override
+  Future<void> clearCart() async {
+    await LocalData().clearCart();
+  }
 }

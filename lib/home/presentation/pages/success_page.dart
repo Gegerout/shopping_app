@@ -1,17 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopping_app/home/presentation/pages/home_page.dart';
+import 'package:shopping_app/home/presentation/states/buy_state.dart';
 
-class SuccessPage extends StatefulWidget {
+class SuccessPage extends ConsumerStatefulWidget {
   const SuccessPage({Key? key}) : super(key: key);
 
   @override
-  State<SuccessPage> createState() => _SuccessPageState();
+  ConsumerState<SuccessPage> createState() => _SuccessPageState();
 }
 
-class _SuccessPageState extends State<SuccessPage> {
+class _SuccessPageState extends ConsumerState<SuccessPage> {
   late Timer _timer;
   int _start = 5;
 
@@ -24,6 +26,7 @@ class _SuccessPageState extends State<SuccessPage> {
           setState(() {
             timer.cancel();
           });
+          ref.read(buyProvider.notifier).clearCart();
           Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(page: 0)));
         } else {
           setState(() {
