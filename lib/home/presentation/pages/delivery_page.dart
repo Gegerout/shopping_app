@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopping_app/home/presentation/pages/settings_page.dart';
+import 'package:shopping_app/home/presentation/pages/success_page.dart';
 
 import 'cart_page.dart';
 import 'home_page.dart';
@@ -97,8 +98,14 @@ class _DeliveryPageState extends State<DeliveryPage> {
                 height: 60,
                 child: ElevatedButton(
                     onPressed: () {
-                      //ref.read(buyProvider.notifier).addToCart(widget.title, widget.price, widget.image);
-                      //Navigator.push(context, MaterialPageRoute(builder: (context) => Scaffold(body: CartPage())));
+                      if(currentTap == 0) {
+                        setState(() {
+                          currentTap = 1;
+                        });
+                      }
+                      else {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SuccessPage()));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
