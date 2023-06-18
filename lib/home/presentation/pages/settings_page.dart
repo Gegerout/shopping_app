@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/auth/presentation/pages/signin_page.dart';
 import 'package:shopping_app/auth/presentation/states/signin_state.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -99,6 +100,7 @@ class SettingsPage extends ConsumerWidget {
                 child: ElevatedButton(
                     onPressed: () {
                       ref.read(signinProvider.notifier).deleteUser();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SigninPage()), (route) => false);
                     },
                     style: ElevatedButton.styleFrom(
                         alignment: Alignment.centerLeft,
