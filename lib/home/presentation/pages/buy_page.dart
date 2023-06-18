@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/home/presentation/states/buy_provider.dart';
 
 import 'home_page.dart';
 
-class BuyPage extends StatefulWidget {
+class BuyPage extends ConsumerStatefulWidget {
   const BuyPage(
       {Key? key, required this.title, required this.price, required this.image})
       : super(key: key);
@@ -13,10 +15,10 @@ class BuyPage extends StatefulWidget {
   final String image;
 
   @override
-  State<BuyPage> createState() => _BuyPageState();
+  ConsumerState<BuyPage> createState() => _BuyPageState();
 }
 
-class _BuyPageState extends State<BuyPage> {
+class _BuyPageState extends ConsumerState<BuyPage> {
   int currentPage = 0;
 
   final screens = [
@@ -104,7 +106,11 @@ class _BuyPageState extends State<BuyPage> {
                     width: 24,
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () {
+                          if(ref.watch(buyProvider).count != 1) {
+                            ref.read(buyProvider.notifier).decrement();
+                          }
+                        },
                         icon: const Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: Color(0xFFF1C40F),
@@ -114,13 +120,15 @@ class _BuyPageState extends State<BuyPage> {
                   const SizedBox(
                     width: 1,
                   ),
-                  Text("1 Kg", style: GoogleFonts.roboto(fontWeight: FontWeight.w400, fontSize: 15, color: const Color(0xFFF1C40F)),),
+                  Text("${ref.watch(buyProvider).count} Kg", style: GoogleFonts.roboto(fontWeight: FontWeight.w400, fontSize: 15, color: const Color(0xFFF1C40F)),),
                   const SizedBox(width: 1,),
                   SizedBox(
                     width: 24,
                     child: IconButton(
                       padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () {
+                          ref.read(buyProvider.notifier).increment();
+                        },
                         icon: const Icon(
                           Icons.keyboard_arrow_up_rounded,
                           color: Color(0xFFF1C40F),
@@ -131,7 +139,7 @@ class _BuyPageState extends State<BuyPage> {
               ),
             ),
             const SizedBox(height: 20,),
-            Text("\$${widget.price} US", style: GoogleFonts.roboto(fontWeight: FontWeight.w700, fontSize: 32, color: const Color(0xFFF1C40F)),),
+            Text("\$${int.parse(widget.price) * ref.watch(buyProvider).count} US", style: GoogleFonts.roboto(fontWeight: FontWeight.w700, fontSize: 32, color: const Color(0xFFF1C40F)),),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
