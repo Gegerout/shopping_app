@@ -152,13 +152,9 @@ class HomeWidget extends ConsumerWidget {
                               fontWeight: FontWeight.w400, fontSize: 18),
                           decoration: InputDecoration(
                               contentPadding: const EdgeInsets.only(left: 62),
-                              suffixIcon: const Padding(
-                                padding: EdgeInsets.only(right: 19),
-                                child: Icon(
-                                  Icons.search,
-                                  color: Color(0xFFF1C40F),
-                                  size: 28,
-                                ),
+                              suffixIcon: Padding(
+                                padding: const EdgeInsets.only(right: 19),
+                                child: Image.asset("assets/images/search_mini.png")
                               ),
                               border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,

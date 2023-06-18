@@ -15,7 +15,11 @@ class SearchPage extends StatelessWidget {
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
-          child: Image.asset("assets/images/apple_image.png", width: 38, height: 38,),
+          child: Image.asset(
+            "assets/images/apple_image.png",
+            width: 38,
+            height: 38,
+          ),
         ),
         title: Text(
           "BestFruitShop",
@@ -27,7 +31,11 @@ class SearchPage extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: Image.asset("assets/images/profile_image.png", width: 30, height: 30,),
+            child: Image.asset(
+              "assets/images/profile_image.png",
+              width: 30,
+              height: 30,
+            ),
           )
         ],
       ),
@@ -44,20 +52,21 @@ class SearchPage extends StatelessWidget {
                 child: TextFormField(
                   controller: searchCont,
                   onEditingComplete: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DoPage(prompt: searchCont.text,)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DoPage(
+                                  prompt: searchCont.text,
+                                )));
                   },
                   autofocus: true,
                   style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w400, fontSize: 18),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(left: 62),
-                      suffixIcon: const Padding(
-                        padding: EdgeInsets.only(right: 19),
-                        child: Icon(
-                          Icons.search,
-                          color: Color(0xFFF1C40F),
-                          size: 28,
-                        ),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 19),
+                        child: Image.asset("assets/images/search_mini.png")
                       ),
                       border: const OutlineInputBorder(
                         borderSide: BorderSide.none,

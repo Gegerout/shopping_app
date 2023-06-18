@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopping_app/home/presentation/states/home_state.dart';
 
+import 'buy_page.dart';
 import 'home_page.dart';
 
 class DoPage extends ConsumerStatefulWidget {
@@ -66,13 +67,9 @@ class _DoPageState extends ConsumerState<DoPage> {
                           fontWeight: FontWeight.w400, fontSize: 18),
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.only(left: 62),
-                          suffixIcon: const Padding(
-                            padding: EdgeInsets.only(right: 19),
-                            child: Icon(
-                              Icons.search,
-                              color: Color(0xFFF1C40F),
-                              size: 28,
-                            ),
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.only(right: 19),
+                            child: Image.asset("assets/images/search_mini.png")
                           ),
                           border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
@@ -112,41 +109,46 @@ class _DoPageState extends ConsumerState<DoPage> {
                     mainAxisSpacing: 22,
                     crossAxisCount: 2,
                     children: List.generate(value.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Center(
-                          child: Material(
-                            elevation: 5,
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            child: SizedBox(
-                              width: 167,
-                              height: 167,
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    value[index].images[1],
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    value[index].title,
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    "\$${value[index].price} US",
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 12),
-                                  )
-                                ],
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => BuyPage(title: value[index].title, price: value[index].price, image: value[index].images[0],)));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Center(
+                            child: Material(
+                              elevation: 5,
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              child: SizedBox(
+                                width: 167,
+                                height: 167,
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      value[index].images[1],
+                                      width: 120,
+                                      height: 120,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      value[index].title,
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      "\$${value[index].price} US",
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),

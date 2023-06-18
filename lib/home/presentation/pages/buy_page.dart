@@ -54,14 +54,10 @@ class _BuyPageState extends ConsumerState<BuyPage> {
               color: const Color(0xFFF1C40F)),
         ),
         centerTitle: true,
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.search,
-              color: Color(0xFFF1C40F),
-              size: 36,
-            ),
+            padding: const EdgeInsets.only(right: 20),
+            child: Image.asset("assets/images/search_big.png")
           )
         ],
       ),
