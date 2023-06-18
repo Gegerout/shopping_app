@@ -26,10 +26,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final widgets = [
-      pinWidget(context),
-      cardWidget(context)
-    ];
+    final widgets = [pinWidget(context), cardWidget(context)];
 
     return Scaffold(
       appBar: AppBar(
@@ -64,31 +61,57 @@ class _DeliveryPageState extends State<DeliveryPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      currentTap = 0;
-                    });
-                  },
-                    child: Image.asset(currentTap == 0
-                        ? "assets/images/pin_active.png"
-                        : "assets/images/pin.png")),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      currentTap = 1;
-                    });
-                  },
-                  child: Image.asset(currentTap == 1
-                      ? "assets/images/card_active.png"
-                      : "assets/images/card.png"),
-                )
-              ],
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          currentTap = 0;
+                        });
+                      },
+                      child: Image.asset(currentTap == 0
+                          ? "assets/images/pin_active.png"
+                          : "assets/images/pin.png")),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        currentTap = 1;
+                      });
+                    },
+                    child: Image.asset(currentTap == 1
+                        ? "assets/images/card_active.png"
+                        : "assets/images/card.png"),
+                  )
+                ],
+              ),
             ),
-            widgets.elementAt(currentTap)
+            widgets.elementAt(currentTap),
+            const SizedBox(height: 60,),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 30, right: 30),
+              child: SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                    onPressed: () {
+                      //ref.read(buyProvider.notifier).addToCart(widget.title, widget.price, widget.image);
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => Scaffold(body: CartPage())));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: const Color(0xFFF1C40F),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30))),
+                    child: Text(
+                      "Continue",
+                      style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w700, fontSize: 25),
+                    )),
+              ),
+            ),
           ],
         ),
       ),
@@ -171,24 +194,26 @@ class _DeliveryPageState extends State<DeliveryPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: MediaQuery.of(context).viewInsets.bottom == 0.0 ? Padding(
-        padding: const EdgeInsets.only(top: 40),
-        child: SizedBox(
-          width: 60,
-          height: 60,
-          child: FittedBox(
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: const Color(0xFFF1C40F),
-              onPressed: () {},
-              child: const Icon(
-                Icons.add,
-                size: 40,
+      floatingActionButton: MediaQuery.of(context).viewInsets.bottom == 0.0
+          ? Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: SizedBox(
+                width: 60,
+                height: 60,
+                child: FittedBox(
+                  child: FloatingActionButton(
+                    elevation: 0,
+                    backgroundColor: const Color(0xFFF1C40F),
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.add,
+                      size: 40,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-      ) : null,
+            )
+          : null,
     );
   }
 
@@ -198,7 +223,9 @@ class _DeliveryPageState extends State<DeliveryPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               width: double.infinity,
               height: 66,
@@ -219,12 +246,14 @@ class _DeliveryPageState extends State<DeliveryPage> {
                     hintStyle: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w500, fontSize: 20),
                     border:
-                    const OutlineInputBorder(borderSide: BorderSide.none),
+                        const OutlineInputBorder(borderSide: BorderSide.none),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               width: double.infinity,
               height: 66,
@@ -245,12 +274,14 @@ class _DeliveryPageState extends State<DeliveryPage> {
                     hintStyle: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w500, fontSize: 20),
                     border:
-                    const OutlineInputBorder(borderSide: BorderSide.none),
+                        const OutlineInputBorder(borderSide: BorderSide.none),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               width: double.infinity,
               height: 66,
@@ -271,7 +302,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                     hintStyle: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w500, fontSize: 20),
                     border:
-                    const OutlineInputBorder(borderSide: BorderSide.none),
+                        const OutlineInputBorder(borderSide: BorderSide.none),
                   ),
                 ),
               ),
@@ -283,6 +314,39 @@ class _DeliveryPageState extends State<DeliveryPage> {
   }
 
   Widget cardWidget(BuildContext context) {
-    return Column();
+    return Padding(
+      padding: const EdgeInsets.only(left: 30, right: 30),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          Container(
+            width: double.infinity,
+            height: 256,
+            decoration: BoxDecoration(
+                color: const Color(0xFFC4C4C4).withOpacity(0.35),
+                borderRadius: BorderRadius.circular(30)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                    child: Image.asset("assets/images/plus-circle.png")
+                ),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Add card",
+                      style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          color: const Color(0xFFF1C40F)),
+                    ))
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
