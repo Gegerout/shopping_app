@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/home/presentation/pages/delivery_page.dart';
 import 'package:shopping_app/home/presentation/pages/settings_page.dart';
 import 'package:shopping_app/home/presentation/states/cart_state.dart';
 
@@ -124,7 +125,7 @@ class _CartPageState extends ConsumerState<CartPage> {
                     child: ElevatedButton(
                         onPressed: () {
                           //ref.read(buyProvider.notifier).addToCart(widget.title, widget.price, widget.image);
-                          //Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => DeliveryPage()));
                         },
                         style: ElevatedButton.styleFrom(
                             elevation: 0,
