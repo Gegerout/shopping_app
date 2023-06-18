@@ -8,7 +8,8 @@ class LocalData {
   Future<void> addToCart(CartModel model) async {
     var dir = await getTemporaryDirectory();
     final File file = File("${dir.path}/cartData.json");
-    file.writeAsStringSync(json.encode(model), mode: FileMode.append);
+    //file.deleteSync();
+    file.writeAsStringSync(json.encode(model));
   }
 
   Future<List<CartModel>?> loadCart() async {
@@ -16,8 +17,8 @@ class LocalData {
     final File file = File("${dir.path}/cartData.json");
     if(file.existsSync()) {
       final data = json.decode(file.readAsStringSync());
-      final model = (data as List).map((e) => CartModel.fromJson(e)).toList();
-      return model;
+      final model = CartModel.fromJson(data);
+    return [model];
     }
     return null;
   }

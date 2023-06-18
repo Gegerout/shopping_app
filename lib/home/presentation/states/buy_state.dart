@@ -18,7 +18,7 @@ class BuyNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addToCart(String title, String price, String image, int count) async {
+  void addToCart(String title, String price, String image) async {
     final model = CartModel(title, price, image, count);
     await DataRepository().addToCart(model);
   }

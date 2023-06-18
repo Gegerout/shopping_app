@@ -164,7 +164,10 @@ class _BuyPageState extends ConsumerState<BuyPage> {
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(buyProvider.notifier).addToCart(widget.title, widget.price, widget.image);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Scaffold(body: CartPage())));
+                    },
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
                         backgroundColor: const Color(0xFFF1C40F),
