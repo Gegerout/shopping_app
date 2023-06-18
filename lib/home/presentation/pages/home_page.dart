@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/home/presentation/pages/cart_page.dart';
+import 'package:shopping_app/home/presentation/pages/notif_page.dart';
 import 'package:shopping_app/home/presentation/pages/search_page.dart';
+import 'package:shopping_app/home/presentation/pages/settings_page.dart';
 import 'package:shopping_app/home/presentation/states/home_state.dart';
 
 import 'buy_page.dart';
@@ -28,9 +31,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final screens = [
       HomeWidget(),
-      HomeWidget(),
-      HomeWidget(),
-      HomeWidget(),
+      NotifPage(),
+      CartPage(),
+      SettingsPage(),
     ];
 
     return Scaffold(

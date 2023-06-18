@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopping_app/home/presentation/pages/settings_page.dart';
 import 'package:shopping_app/home/presentation/states/buy_provider.dart';
 
+import 'cart_page.dart';
 import 'home_page.dart';
+import 'notif_page.dart';
 
 class BuyPage extends ConsumerStatefulWidget {
   const BuyPage(
@@ -23,9 +26,9 @@ class _BuyPageState extends ConsumerState<BuyPage> {
 
   final screens = [
     HomeWidget(),
-    HomeWidget(),
-    HomeWidget(),
-    HomeWidget(),
+    NotifPage(),
+    CartPage(),
+    SettingsPage(),
   ];
 
   @override
