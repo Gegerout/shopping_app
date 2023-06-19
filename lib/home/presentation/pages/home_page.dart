@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
       NotifPage(),
       CartPage(),
       SettingsPage(),
+      ProfilePage()
     ];
 
     return Scaffold(
