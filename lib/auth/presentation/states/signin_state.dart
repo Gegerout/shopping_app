@@ -4,6 +4,11 @@ import 'package:shopping_app/auth/data/repositories/data_repository.dart';
 
 import '../../data/models/user_model.dart';
 
+final credsProvider = FutureProvider((ref) async {
+  final data = await DataRepository().getCreds();
+  return data;
+});
+
 final signinProvider = ChangeNotifierProvider((ref) => SigninNotifier());
 
 class SigninNotifier extends ChangeNotifier {

@@ -4,4 +4,5 @@ abstract class Repository {
   Future<UserUseCase?> loginUser(String username, String password);
   Future<UserUseCase?> getUser();
   Future<void> deleteUser();
+  Future<List?> getCreds();
 }

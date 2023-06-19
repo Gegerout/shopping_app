@@ -12,6 +12,7 @@ class RemoteData {
     final Dio dio = Dio();
     var dir = await getTemporaryDirectory();
     final File file = File("${dir.path}/userData.json");
+    final File file2 = File("${dir.path}/userCreds.json");
     final response = await dio.post(apiUrl, data: {
       "username": username,
       "password": password
@@ -23,6 +24,8 @@ class RemoteData {
     if(response.statusCode == 200) {
       final model = UserModel.fromJson(response.data);
       file.writeAsStringSync(json.encode(model));
+      file2.writeAsStringSync(json.encode({"username": username,
+        "password": password}));
       return model;
     }
     return null;

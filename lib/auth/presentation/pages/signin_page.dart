@@ -3,35 +3,57 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopping_app/auth/presentation/pages/onboarding_page.dart';
 import 'package:shopping_app/auth/presentation/pages/signup_page.dart';
-import 'package:shopping_app/home/presentation/pages/home_page.dart';
 
 import '../states/signin_state.dart';
 
-class SigninPage extends ConsumerWidget {
+class SigninPage extends ConsumerStatefulWidget {
   SigninPage({Key? key}) : super(key: key);
 
+  @override
+  ConsumerState<SigninPage> createState() => _SigninPageState();
+}
+
+class _SigninPageState extends ConsumerState<SigninPage> {
   final TextEditingController nameCont = TextEditingController();
   final TextEditingController passwordCont = TextEditingController();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final height = MediaQuery.of(context).size.height;
+  void initState() {
+    super.initState();
+    ref.refresh(credsProvider).value;
+  }
 
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
+
+    return ref.watch(credsProvider).when(
+        data: (value) {
+          if(value != null) {
+            setState(() {
+              nameCont.text = value[0];
+              passwordCont.text = value[1];
+            });
+            ref.read(signinProvider.notifier).checkCreds(nameCont.text, passwordCont.text);
+          }
+      return Scaffold(
+        resizeToAvoidBottomInset: true,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
               padding: const EdgeInsets.only(left: 30, right: 30),
               child: Column(
                 children: [
                   SizedBox(height: height * 0.1,),
                   Center(
                       child: Text(
-                    "Sign in",
-                    style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w700, fontSize: 25),
-                  )),
+                        "Sign in",
+                        style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w700, fontSize: 25),
+                      )),
                   SizedBox(height: height * 0.08,),
                   Container(
                     width: double.infinity,
@@ -53,7 +75,7 @@ class SigninPage extends ConsumerWidget {
                           hintStyle: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w500, fontSize: 20),
                           border:
-                              const OutlineInputBorder(borderSide: BorderSide.none),
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                         ),
                       ),
                     ),
@@ -80,7 +102,7 @@ class SigninPage extends ConsumerWidget {
                           hintStyle: GoogleFonts.montserrat(
                               fontWeight: FontWeight.w500, fontSize: 20),
                           border:
-                              const OutlineInputBorder(borderSide: BorderSide.none),
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                         ),
                       ),
                     ),
@@ -143,8 +165,18 @@ class SigninPage extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
         ),
+      );
+    },
+        error: (error, stacktrace) {
+      return Scaffold(
+        body: Center(
+          child: Text(error.toString()),
         ),
-    );
+      );
+        },
+        loading: () =>
+            const Scaffold(body: Center(child: CircularProgressIndicator(),),));
   }
 }

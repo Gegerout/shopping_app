@@ -22,4 +22,15 @@ class LocalData {
     final File file = File("${dir.path}/userData.json");
     file.deleteSync();
   }
+
+  Future<List?> getCreds() async {
+    var dir = await getTemporaryDirectory();
+    final File file = File("${dir.path}/userCreds.json");
+    if(file.existsSync()) {
+      final data = json.decode(file.readAsStringSync());
+      final list = [data["username"], data["password"]];
+      return list;
+    }
+    return null;
+  }
 }

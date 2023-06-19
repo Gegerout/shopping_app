@@ -28,4 +28,10 @@ class DataRepository extends Repository {
   Future<void> deleteUser() async {
     await LocalData().deleteUser();
   }
+
+  @override
+  Future<List?> getCreds() async {
+    final data = await LocalData().getCreds();
+    return data;
+  }
 }
