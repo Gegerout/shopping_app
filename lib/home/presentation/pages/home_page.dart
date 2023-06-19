@@ -34,7 +34,8 @@ class _HomePageState extends State<HomePage> {
       NotifPage(),
       CartPage(),
       SettingsPage(),
-      ProfilePage()
+      ProfilePage(),
+      OrdersPage()
     ];
 
     return Scaffold(
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                     currentPage = 3;
                   });
                 },
-                child: Image.asset(currentPage == 3
+                child: Image.asset(currentPage == 3 || currentPage == 4 || currentPage == 5
                     ? "assets/images/settings_active.png"
                     : "assets/images/settings_icon.png"),
               ),
